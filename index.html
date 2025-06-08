@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Advanced AI Assistant - Professional Chat</title>
+    <link href="style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Particles Background -->
+    <div class="particles-container" id="particles"></div>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="ai-logo">
+                <div class="logo-circle">
+                    <img src="https://i.imgur.com/JigwyMS.png" alt="Zyah King AI" class="logo-image">
+                    <div class="logo-ring"></div>
+                    <div class="logo-pulse"></div>
+                </div>
+            </div>
+            <h1 class="loading-title">Zyah King AI</h1>
+            <div class="loading-subtitle">Initializing Advanced Neural Networks...</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <div class="loading-percentage">0%</div>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div class="app-container" id="appContainer" style="display: none;">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="brand">
+                    <div class="brand-icon">
+                        <img src="https://i.imgur.com/JigwyMS.png" alt="Zyah King AI">
+                    </div>
+                    <div class="brand-text">
+                        <div class="brand-name">Zyah King AI</div>
+                        <div class="brand-subtitle">Advanced Neural Network</div>
+                    </div>
+                </div>
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="sidebar-menu">
+                <div class="menu-item active" data-tab="chat">
+                    <i class="fas fa-comments"></i>
+                    <span>Chat</span>
+                </div>
+                <div class="menu-item" data-tab="settings">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </div>
+                <div class="menu-item" data-tab="history">
+                    <i class="fas fa-history"></i>
+                    <span>History</span>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="status-card">
+                    <div class="status-indicator">
+                        <div class="status-dot active"></div>
+                        <span>Online</span>
+                    </div>
+                    <div class="status-text">No Limits Mode Active</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <div class="header-left">
+                    <button class="menu-btn" id="menuBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="header-info">
+                        <h1 class="header-title">Zyah King AI</h1>
+                        <div class="header-status">
+                            <span class="status-dot online"></span>
+                            Advanced Neural Assistant
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="header-btn" id="clearBtn" title="Clear Chat">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                    <button class="header-btn" id="settingsBtn" title="Settings">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Area -->
+            <div class="chat-area">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="welcome-card">
+                        <div class="welcome-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h2>Welcome to Zyah King AI</h2>
+                        <p>I'm an advanced AI assistant designed to help you with various tasks, provide information, and assist with your queries in a professional manner.</p>
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <i class="fas fa-globe internet-indicator"></i>
+                                <span>Real-time Internet</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-code"></i>
+                                <span>Code Generation</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-brain"></i>
+                                <span>Advanced Analysis</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>No Restrictions</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="input-area">
+                <div class="input-container">
+                    <div class="input-wrapper">
+                        <input type="file" id="fileInput" accept="image/*,.pdf,.txt,.doc,.docx" style="display: none;" multiple>
+                        <button class="attach-btn" id="attachBtn" title="Attach file">
+                            <i class="fas fa-paperclip"></i>
+                        </button>
+                        <textarea 
+                            id="messageInput" 
+                            placeholder="Ask me anything... I'm here to help"
+                            rows="1"
+                        ></textarea>
+                        <button class="send-btn" id="sendBtn" disabled>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                        <button class="stop-btn" id="stopBtn" style="display: none;">
+                            <i class="fas fa-stop"></i>
+                        </button>
+                    </div>
+                    <div class="input-footer">
+                        <div class="typing-indicator" id="typingIndicator" style="display: none;">
+                            <div class="typing-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <span>AI is thinking...</span>
+                        </div>
+                        <div class="input-hints">
+                            <span class="hint-item">
+                                <i class="fas fa-lightbulb"></i>
+                                Press Enter to send
+                            </span>
+                            <span class="hint-item">
+                                <i class="fas fa-brain"></i>
+                                Intelligent responses
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
